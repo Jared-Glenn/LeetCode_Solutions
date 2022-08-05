@@ -62,3 +62,32 @@ Details
 Runtime: 224 ms, faster than 44.00% of Python3 online submissions for Longest Repeating Character Replacement.
 Memory Usage: 14 MB, less than 57.73% of Python3 online submissions for Longest Repeating Character Replacement.
 '''
+'''
+--ATTEMPT TWO--ATTEMPT TWO--ATTEMPT TWO--ATTEMPT TWO--ATTEMPT TWO--ATTEMPT TWO--ATTEMPT TWO--ATTEMPT TWO--ATTEMPT TWO--ATTEMPT TWO--ATTEMPT TWO--ATTEMPT TWO--ATTEMPT TWO--
+'''
+
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        letters = {}
+        first = 0
+        res = 0
+
+        for x, letter in enumerate(s):
+            letters[letter] = 1 + letters.get(letter, 0)
+            if max(letters.values()) + k >= (x+1) - first:
+                if (x+1) - first > res:
+                    res = (x+1) - first
+            else:
+                while max(letters.values()) + k < (x+1) - first:
+                    position = s[first]
+                    letters[position] -= 1
+                    first += 1
+                
+        return res
+    
+'''
+Success
+Details 
+Runtime: 362 ms, faster than 14.93% of Python3 online submissions for Longest Repeating Character Replacement.
+Memory Usage: 14 MB, less than 58.30% of Python3 online submissions for Longest Repeating Character Replacement.
+'''
