@@ -63,3 +63,28 @@ Details
 Runtime: 246 ms, faster than 96.62% of Python3 online submissions for Binary Search.
 Memory Usage: 15.5 MB, less than 72.10% of Python3 online submissions for Binary Search.
 '''
+
+# Solution 2
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        left = 0
+        right = len(nums) - 1
+        
+        while left <= right:
+            mid = int((left + right)/2)
+            if nums[mid] == target:
+                return mid
+            elif nums[mid] < target:
+                left = mid + 1
+            else:
+                right = mid - 1
+        
+        return -1
+
+'''
+Success
+Details 
+Runtime: 334 ms, faster than 63.18% of Python3 online submissions for Binary Search.
+Memory Usage: 15.5 MB, less than 72.77% of Python3 online submissions for Binary Search.
+'''
