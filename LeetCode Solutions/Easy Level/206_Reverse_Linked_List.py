@@ -55,3 +55,28 @@ Details
 Runtime: 208 ms, faster than 5.14% of Python online submissions for Reverse Linked List.
 Memory Usage: 15.5 MB, less than 53.04% of Python online submissions for Reverse Linked List.
 '''
+# Secod Solution
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        prev = None
+        
+        while head:
+            nex = head.next
+            head.next = prev
+            prev = head
+            head = nex
+        
+        return prev
+
+'''
+Success
+Details 
+Runtime: 38 ms, faster than 92.06% of Python3 online submissions for Reverse Linked List.
+Memory Usage: 15.4 MB, less than 56.26% of Python3 online submissions for Reverse Linked List.
+'''
