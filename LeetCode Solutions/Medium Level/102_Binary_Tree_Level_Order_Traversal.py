@@ -81,3 +81,38 @@ Details
 Runtime: 59 ms, faster than 37.38% of Python3 online submissions for Binary Tree Level Order Traversal.
 Memory Usage: 14.1 MB, less than 98.89% of Python3 online submissions for Binary Tree Level Order Traversal.
 '''
+
+# Second Solution
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        res = []
+        q = collections.deque()
+        q.append(root)
+        
+        while q:
+            level = []
+            qLen = len(q)
+            for i in range(qLen):
+                node = q.popleft()
+                if node:
+                    level.append(node.val)
+                    q.append(node.left)
+                    q.append(node.right)
+            if level:
+                res.append(level)
+        
+        return res
+
+'''
+Success
+Details 
+Runtime: 43 ms, faster than 78.62% of Python3 online submissions for Binary Tree Level Order Traversal.
+Memory Usage: 14.2 MB, less than 85.22% of Python3 online submissions for Binary Tree Level Order Traversal.
+'''
