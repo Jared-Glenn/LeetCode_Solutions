@@ -70,3 +70,72 @@ Details
 Runtime: 165 ms, faster than 11.07% of Python3 online submissions for Lowest Common Ancestor of a Binary Search Tree.
 Memory Usage: 18.8 MB, less than 68.08% of Python3 online submissions for Lowest Common Ancestor of a Binary Search Tree.
 '''
+
+# Beginning Structure of Attempt Two
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        
+        cur = root
+        if p.val > q.val:
+            p, q = q, p
+        
+        def dfs(root, p, q, cur):
+            if root and (root == p or root == q):
+                cur = root
+                print(cur.val)
+                return
+            
+            elif root and p.val < root.val and q.val > root.val:
+                cur = root
+                return
+            elif root:
+                left = dfs(root.left, p, q, cur)
+                right = dfs(root.right, p, q)
+                return
+            else:
+                return
+        
+        dfs(root, p, q)
+        
+        return cur
+    
+    '''
+    NO SOLUTION
+    '''
+    
+    # Revisited first solution
+    
+    # Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        
+        cur = root
+        
+        while cur:
+            if cur.val > p.val and cur.val > q.val:
+                cur = cur.left
+            elif cur.val < p.val and cur.val < q.val:
+                cur = cur.right
+            else:
+                return cur
+            
+'''
+Success
+Details 
+Runtime: 114 ms, faster than 58.68% of Python3 online submissions for Lowest Common Ancestor of a Binary Search Tree.
+Memory Usage: 18.7 MB, less than 68.71% of Python3 online submissions for Lowest Common Ancestor of a Binary Search Tree.
+'''
