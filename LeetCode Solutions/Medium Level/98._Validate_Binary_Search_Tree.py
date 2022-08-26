@@ -108,3 +108,34 @@ Details
 Runtime: 43 ms, faster than 96.42% of Python3 online submissions for Validate Binary Search Tree.
 Memory Usage: 16.4 MB, less than 78.61% of Python3 online submissions for Validate Binary Search Tree.
 '''
+
+# Solution 2
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        
+            
+        def checking(root, minimum, maximum):
+            if not root: return True
+            
+            left = checking(root.left, minimum, root.val)
+            right = checking(root.right, root.val, maximum)
+            
+            valid = (left and right and root.val < maximum and root.val > minimum)
+            
+            return valid
+        
+        return checking(root, float('-inf'), float('inf'))
+
+'''
+Success
+Details 
+Runtime: 78 ms, faster than 35.80% of Python3 online submissions for Validate Binary Search Tree.
+Memory Usage: 17.1 MB, less than 5.40% of Python3 online submissions for Validate Binary Search Tree.
+'''
