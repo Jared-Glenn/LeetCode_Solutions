@@ -144,7 +144,7 @@ class Solution:
         res, visit, new = set(), set(), set()
     
         def dfs(r, c, root, word):
-            if (r < 0 or r == ROWS or c < 0 or c == COLUMNS or board[r][c] not in root.children or (board[r][c] in visit and visit)):
+            if (r < 0 or r == ROWS or c < 0 or c == COLUMNS or board[r][c] not in root.children or (r, c) in visit):
                 return
             
             visit.add((r, c))
@@ -158,7 +158,6 @@ class Solution:
             dfs(r, c+1, root, word)
             dfs(r, c-1, root, word)
             
-            print(r, c, visit, res)
             visit.remove((r, c))
         
         for r in range(ROWS):
@@ -175,5 +174,8 @@ class Solution:
         return list(res)
 
 '''
-
+Success
+Details 
+Runtime: 2505 ms, faster than 44.95% of Python3 online submissions for Word Search II.
+Memory Usage: 16.3 MB, less than 39.73% of Python3 online submissions for Word Search II.
 '''
