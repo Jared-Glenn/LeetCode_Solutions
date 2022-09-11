@@ -119,3 +119,39 @@ Details
 Runtime: 849 ms, faster than 5.03% of Python3 online submissions for Number of Islands.
 Memory Usage: 21.9 MB, less than 19.34% of Python3 online submissions for Number of Islands.
 '''
+
+# Third solution. Recreated from memory using new strategies learned over the
+# last few months.
+
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        islands = 0
+        visit = set()
+        
+        
+        def paint(r, c):
+            if (r, c) in visit or r >= len(grid) or r < 0 or c >= len(grid[0]) or c < 0 or grid[r][c] == '0':
+                return
+            visit.add((r, c))
+                
+            paint(r+1, c)
+            paint(r-1, c)
+            paint(r, c+1)
+            paint(r, c-1)
+        
+        
+        for r in range(len(grid)):
+            for c in range(len(grid[0])):
+                if grid[r][c] == '1' and (r, c) not in visit:
+                    islands += 1
+                    paint(r, c)
+        
+        return islands
+
+
+'''
+Success
+Details 
+Runtime: 336 ms, faster than 87.25% of Python3 online submissions for Number of Islands.
+Memory Usage: 25.6 MB, less than 9.53% of Python3 online submissions for Number of Islands.
+'''
